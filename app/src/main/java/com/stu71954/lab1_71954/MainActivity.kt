@@ -20,8 +20,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -43,17 +41,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//            GLogin()
+            GLogin()
 //            GSignUp()
 //            BLogin()
-            BSignUp()
+//            BSignUp()
         }
     }
 }
 
 object AppColors {
-    val LightGrey = Color.LightGray
-    val White = Color.White
+    val LightGrey = Color(0xFFE1E1E1)
+    val White = Color(0xFFEFEFEF)
     val Black = Color(0xFF131313)
     val LightBlack = Color(0xFF1D1D1D)
 }
@@ -76,7 +74,7 @@ fun GreetingImage() {
 fun TopPart(){
     Text(
         text = "Welcome back you've been missed!",
-        fontSize = 15.sp,
+        fontSize = 18.sp,
         color = AppColors.LightBlack,
     )
 }
@@ -87,32 +85,47 @@ fun TextFieldPart() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp),
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
+
     ) {
-        OutlinedTextField(
+        TextField(
             value = "",
             onValueChange = { /*TODO*/ },
             label = { Text("Email") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = AppColors.LightGrey,
-                unfocusedBorderColor = AppColors.White,
-            ),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = AppColors.White,
+                unfocusedContainerColor = AppColors.White,
+                disabledContainerColor = AppColors.White,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = AppColors.LightBlack,
+                unfocusedTextColor = AppColors.LightBlack,
+                focusedLabelColor = AppColors.LightBlack,
+                ),
+            shape = RoundedCornerShape(10),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp),
+                .height(60.dp)
         )
-        OutlinedTextField(
+        TextField(
             value = "",
             onValueChange = { /*TODO*/ },
             label = { Text("Password") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = AppColors.LightGrey,
-                unfocusedBorderColor = AppColors.White,
-            ),
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = AppColors.White,
+                unfocusedContainerColor = AppColors.White,
+                disabledContainerColor = AppColors.White,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = AppColors.LightBlack,
+                unfocusedTextColor = AppColors.LightBlack,
+                focusedLabelColor = AppColors.LightBlack,
+
+                ),
+            shape = RoundedCornerShape(10),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp),
+                .height(60.dp)
         )
 
         Text(
@@ -120,8 +133,7 @@ fun TextFieldPart() {
             fontSize = 15.sp,
             color = AppColors.LightBlack,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
+                .fillMaxWidth(),
             textAlign = TextAlign.End
         )
     }
@@ -142,7 +154,6 @@ fun ButtonsPart(){
             modifier = Modifier
                 .fillMaxWidth()
                 .height(75.dp),
-
             onClick = { /* Do something when button is clicked */ },
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
@@ -179,12 +190,12 @@ fun LoginSocial() {
         Button(
             modifier = Modifier
                 .padding(8.dp)
-                .size(90.dp),
+                .size(80.dp),
             onClick = { /* Do something when button is clicked */ },
             shape = RoundedCornerShape(16.dp),
             border = BorderStroke(2.5.dp, Color.White),
             colors = ButtonDefaults.buttonColors(
-                containerColor = AppColors.LightBlack,
+                containerColor = AppColors.White,
                 contentColor = AppColors.White
             ),
             contentPadding = PaddingValues(3.dp) // Change the inner padding here
@@ -193,18 +204,19 @@ fun LoginSocial() {
                 painter = painterResource(id = R.drawable.google),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(100.dp)
-                    .width(100.dp)
+                    .height(90.dp)
+                    .width(90.dp)
             )
         }
+        Spacer(modifier = Modifier.width(15.dp))
         Button(
             modifier = Modifier
-                .size(90.dp),
+                .size(80.dp),
             onClick = { /* Do something when button is clicked */ },
             shape = RoundedCornerShape(16.dp),
             border = BorderStroke(2.5.dp, Color.White),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Unspecified,
+                containerColor = AppColors.White,
                 contentColor = AppColors.White,
             ),
             contentPadding = PaddingValues(3.dp) // Change the inner padding here
@@ -213,12 +225,11 @@ fun LoginSocial() {
                 painter = painterResource(id = R.drawable.mac),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(100.dp)
-                    .width(100.dp),
+                    .height(90.dp)
+                    .width(90.dp),
             )
         }
     }
-
     Row (
         modifier = Modifier
             .padding(bottom = 10.dp)
@@ -226,14 +237,14 @@ fun LoginSocial() {
         Text(
             text = "Not a member? ",
             fontSize = 15.sp,
-            color = AppColors.LightGrey,
+            color = AppColors.LightBlack,
             textAlign = TextAlign.Center
         )
 
         Text(
             text = "Register now",
             fontSize = 15.sp,
-            color = AppColors.LightGrey,
+            color = AppColors.LightBlack,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -249,7 +260,7 @@ fun GLogin() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(20.dp),
-            verticalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
 
             ) {
@@ -263,6 +274,171 @@ fun GLogin() {
          }
     }
 
+//GSignUp------------------------------------
+
+@Composable
+fun GreetingImageSignUp() {
+    val image = painterResource(id = R.drawable.cadeado)
+    Box {
+        Image(
+            painter = image,
+            contentDescription = null,
+        )
+    }
+}
+
+@Composable
+fun TopPartSignUp(){
+
+    Text(
+        text = "Let's create an account for you",
+        fontSize = 20.sp,
+        color = AppColors.LightBlack,
+    )
+}
+
+@Composable
+fun TextFieldPartSignUp() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically), // Change the vertical spacing here
+
+    ) {
+        TextField(
+            value = "",
+            onValueChange = { /*TODO*/ },
+            label = { Text("Email") },
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = AppColors.White,
+                unfocusedContainerColor = AppColors.White,
+                disabledContainerColor = AppColors.White,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = AppColors.LightBlack,
+                unfocusedTextColor = AppColors.LightBlack,
+                focusedLabelColor = AppColors.LightBlack,
+            ),
+            shape = RoundedCornerShape(10),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)  // Change the height of the TextField here
+        )
+        TextField(
+            value = "",
+            onValueChange = { /*TODO*/ },
+            label = { Text("Password") },
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = AppColors.White,
+                unfocusedContainerColor = AppColors.White,
+                disabledContainerColor = AppColors.White,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = AppColors.LightBlack,
+                unfocusedTextColor = AppColors.LightBlack,
+                focusedLabelColor = AppColors.LightBlack,
+            ),
+            shape = RoundedCornerShape(10),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+        )
+
+        TextField(
+            value = "",
+            onValueChange = { /*TODO*/ },
+            label = { Text("Confirm password") },
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = AppColors.White,
+                unfocusedContainerColor = AppColors.White,
+                disabledContainerColor = AppColors.White,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedTextColor = AppColors.LightBlack,
+                unfocusedTextColor = AppColors.LightBlack,
+                focusedLabelColor = AppColors.LightBlack,
+            ),
+            shape = RoundedCornerShape(10),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+        )
+
+    }
+}
+
+@Composable
+fun ButtonsPartSignUp(){
+    Column (
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+        ) {
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(75.dp),
+
+            onClick = { /* Do something when button is clicked */ },
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = AppColors.White,
+                contentColor = AppColors.LightBlack,
+            ),
+        ){
+            Text(
+                "Sign Up",
+                fontSize = 17.sp,
+                fontWeight = FontWeight.Bold,
+            )
+
+        }
+    }
+    Row (
+        modifier = Modifier
+            .padding(bottom = 10.dp)
+    ) {
+        Text(
+            text = "Already a member? ",
+            fontSize = 15.sp,
+            color = AppColors.LightBlack,
+            textAlign = TextAlign.Center
+        )
+
+        Text(
+            text = "Login now",
+            fontSize = 15.sp,
+            color = AppColors.LightBlack,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+fun GSignUp() {
+    Surface(
+        color = AppColors.LightGrey,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
+            horizontalAlignment = Alignment.CenterHorizontally,
+
+            ) {
+            GreetingImageSignUp()
+            TopPartSignUp()
+            TextFieldPartSignUp()
+            ButtonsPartSignUp()
+        }
+    }
+}
 
 //BLogin------------------------------------
 
@@ -281,7 +457,7 @@ fun GreetingImageB() {
 fun TopPartB(){
     Text(
         text = "Welcome back you've been missed!",
-        fontSize = 15.sp,
+        fontSize = 18.sp,
         color = AppColors.LightGrey,
     )
 }
@@ -316,8 +492,6 @@ fun TextFieldPartB() {
                 .height(60.dp)
         )
 
-
-
         TextField(
             value = "",
             onValueChange = { /*TODO*/ },
@@ -349,7 +523,6 @@ fun TextFieldPartB() {
         )
     }
 }
-
 
 @Composable
 fun ButtonsPartB(){
@@ -384,7 +557,7 @@ fun ButtonsPartB(){
         Text(
             text = "Or continue with",
             fontSize = 15.sp,
-            color = AppColors.White,
+            color = AppColors.LightGrey,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
@@ -422,6 +595,7 @@ fun LoginSocialB() {
                     .width(90.dp)
             )
         }
+
         Spacer(modifier = Modifier.width(15.dp))
 
         Button(
@@ -477,7 +651,7 @@ fun BLogin() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(20.dp),
-            verticalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
 
             ) {
@@ -491,159 +665,15 @@ fun BLogin() {
     }
 }
 
-//GSignUp------------------------------------
-
-@Composable
-fun GreetingImageSignUp() {
-    val image = painterResource(id = R.drawable.cadeado)
-    Box {
-        Image(
-            painter = image,
-            contentDescription = null,
-        )
-    }
-}
-
-@Composable
-fun TopPartSignUp(){
-
-    Text(
-        text = "Let's create an account for you",
-        fontSize = 15.sp,
-        color = AppColors.LightBlack,
-    )
-}
-
-@Composable
-fun TextFieldPartSignUp() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        OutlinedTextField(
-            value = "",
-            onValueChange = { /*TODO*/ },
-            label = { Text("Email") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = AppColors.LightBlack,
-                unfocusedBorderColor = AppColors.White,
-            ),
-
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp),
-        )
-        OutlinedTextField(
-            value = "",
-            onValueChange = { /*TODO*/ },
-            label = { Text("Password") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = AppColors.LightBlack,
-                unfocusedBorderColor = AppColors.White,
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp),
-        )
-
-        OutlinedTextField(
-            value = "",
-            onValueChange = { /*TODO*/ },
-            label = { Text("Confirm password") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = AppColors.LightBlack,
-                unfocusedBorderColor = AppColors.White,
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(70.dp),
-        )
-
-    }
-}
-
-@Composable
-fun ButtonsPartSignUp(){
-    Column (
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp),
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally,
-
-        ) {
-        Spacer(modifier = Modifier.width(10.dp))
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(75.dp),
-
-            onClick = { /* Do something when button is clicked */ },
-            shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = AppColors.White,
-                contentColor = AppColors.LightBlack,
-            ),
-        ){
-            Text(
-                "Sign Up",
-                fontSize = 17.sp,
-                fontWeight = FontWeight.Bold,
-            )
-
-        }
-    }
-    Row (
-        modifier = Modifier
-            .padding(bottom = 10.dp)
-    ) {
-        Text(
-            text = "Already a member? ",
-            fontSize = 15.sp,
-            color = AppColors.LightBlack,
-            textAlign = TextAlign.Center
-        )
-
-        Text(
-            text = "Login now",
-            fontSize = 15.sp,
-            color = AppColors.LightBlack,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-@Composable
-fun GSignUp() {
-    Surface(
-        color = AppColors.Black,
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally,
-
-            ) {
-            GreetingImageSignUp()
-            TopPartSignUp()
-            TextFieldPartSignUp()
-            ButtonsPartSignUp()
-        }
-    }
-}
-
 //BSignUp------------------------------------
 
 @Composable
 fun GreetingImageBSignUp() {
     val image = painterResource(id = R.drawable.cadeado)
-    Box {
+    Box (
+        modifier = Modifier
+            .padding(top = 20.dp),
+    ){
         Image(
             painter = image,
             contentDescription = null,
@@ -656,7 +686,7 @@ fun TopPartBSignUp(){
 
     Text(
         text = "Let's create an account for you",
-        fontSize = 15.sp,
+        fontSize = 18.sp,
         color = AppColors.LightGrey,
     )
 }
@@ -688,7 +718,7 @@ fun TextFieldPartBSignUp() {
             shape = RoundedCornerShape(10),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp)
+                .height(60.dp)
         )
         TextField(
             value = "",
@@ -707,7 +737,7 @@ fun TextFieldPartBSignUp() {
             shape = RoundedCornerShape(10),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp),
+                .height(60.dp),
         )
 
        TextField(
@@ -728,7 +758,7 @@ fun TextFieldPartBSignUp() {
             shape = RoundedCornerShape(10),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(70.dp),
+                .height(60.dp),
         )
 
     }
@@ -796,9 +826,8 @@ fun BSignUp() {
                 .fillMaxSize()
                 .padding(20.dp),
 
-            verticalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
-
 
             ) {
             GreetingImageBSignUp()
